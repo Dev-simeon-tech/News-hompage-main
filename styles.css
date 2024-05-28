@@ -1,0 +1,325 @@
+/* fonts */
+@font-face {
+    font-family: 'Inter-bold';
+    src: url(assets/fonts/static/Inter-Bold.ttf);
+}
+@font-face {
+    font-family: 'Inter-Extrabold';
+    src: url(assets/fonts/static/Inter-ExtraBold.ttf);
+}
+@font-face {
+    font-family: 'Inter-regular';
+    src: url(assets/fonts/static/Inter-Regular.ttf);
+}
+/* fonts */
+
+/* colors */
+:root{
+    /* primary colors */
+    --Soft-orange: hsl(35, 77%, 62%);
+    --Soft-red: hsl(5, 85%, 63%);
+
+    /* neutral colors */
+    --Off-white: hsl(36, 100%, 99%);
+    --Grayish-blue: hsl(233, 8%, 79%); 
+    --Dark-grayish-blue: hsl(236, 13%, 42%); 
+    --Very-dark-blue: hsl(240, 100%, 5%);
+}
+/* colors */
+
+/* css reset */
+*::after,   
+*::before,
+*{
+    box-sizing: border-box; 
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+ul,
+body,
+picture{
+    margin: 0;
+    padding: 0;
+}
+body{
+    line-height: 1.5;
+    position: relative;
+    overflow-x: hidden;
+    background-color: var(--Off-white);
+    font-family: 'Inter-regular', sans-serif; 
+}
+
+input,
+button,
+textarea,
+select{
+    font: inherit;
+    color: inherit;
+}
+img,picture,svg{
+    max-width: 100%;
+    display: block;
+}
+a{  text-decoration: none; }
+li{ list-style: none;}
+
+/* css reset */
+
+
+
+/* utility classes */
+.flex{
+    display: flex;
+}
+.space-between{
+    justify-content: space-between;
+}
+.justify-center{
+    justify-content: center;
+}
+.align-center{
+    align-items: center;
+}
+/* utility classes */
+
+/* --------------- */
+/* ---main styles--- */
+/* --------------- */
+
+
+main{
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* header styling */
+.primary-header{
+    position: relative;
+    padding: 2rem 0;
+
+}
+.primary-header::after{
+    content: '';
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    inset: 0;
+    background-color: rgba(0,0,0,0.5);
+    display: none;
+}
+.primary-navigation{
+    position: fixed;
+    width: 70%;
+    height: 100vh;
+    top:0;
+    right: -100%;
+    z-index:3;
+    background-color: var(--Off-white);
+    transition: right 0.5s ease;
+
+}
+.primary-navigation ul{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50%;
+    gap: 1rem;
+    padding: 1rem;
+}
+.primary-navigation ul li a{
+    font-size: 18px;
+    color: var(--Very-dark-blue);
+
+}
+.mobile-nav-toggle{
+    position: absolute;
+    right: 0;
+    top: 2.5rem;
+    z-index: 5;
+}
+.primary-navigation[aria-expanded="true"]{
+    right: 0;
+}
+.primary-header[data-overlay]::after{
+    display: block;
+}
+.mobile-nav-toggle[aria-expanded="true"] img{
+    position: fixed;
+    right: 2rem; 
+    content: url(assets/images/icon-menu-close.svg);
+}
+/* header styling */
+.hero{
+    display: grid;
+}
+
+.hero p{
+    color: var(--Dark-grayish-blue);
+    font-size: 16px;
+}
+.hero h1{
+    font-family: 'Inter-Extrabold', sans-serif;
+    font-size: 40px;
+    max-width: 10ch;
+    line-height: 3rem;
+    padding-top: 1rem;
+    color: var(--Very-dark-blue);
+}
+.main-content p{
+    padding: 1rem 0;
+    
+}
+.btn{
+    background-color: var(--Soft-red);
+    color: var(--Very-dark-blue);
+    font-family: 'Inter-bold', sans-serif;
+    border: none;
+    font-size: 18px;
+    padding: 8px 20px;
+    transition: background-color 0.5s ease;
+    cursor: pointer;
+}
+.hero-aside{
+    margin-top: 2rem;
+    background-color: var(--Very-dark-blue);
+    padding: 1rem;
+}
+.hero-aside h2{
+    color: var(--Soft-orange);
+    font-size: 29px;
+}
+.hero-aside h3{
+    color: var(--Off-white);
+    cursor: pointer;
+}
+.new-article{
+    padding: 1.5rem 0;
+}
+.new-article:not(:last-child){
+    border-bottom: 1px solid var(--Dark-grayish-blue);
+}
+.main-article{
+    gap: 1rem;
+    margin-top: 2rem;
+}
+.main-article > img{
+    width: 30%;
+}
+.main-article > div{
+    width: 70%;
+}
+.main-article h2{
+    color: var(--Soft-red);
+    font-family: 'Inter-bold',sans-serif;
+}
+
+
+/* destop sites */
+@media(min-width:45rem){
+
+    .hero-aside{
+        grid-area: aside;
+    }
+    .hero h1{
+        grid-area: header-text ;
+    }
+    .main-content{
+        grid-area: main-content ;
+    }
+    .hero > img{
+        grid-area: hero-img;
+        content: url(assets/images/image-web-3-desktop.jpg);
+    }
+    .gaming{
+        grid-area: gaming;
+    }
+    .laptop{
+        grid-area: laptop;
+    }
+    .retro{
+        grid-area: retro;
+    }
+    .hero-aside,.main-article{
+        margin-top: 0;
+    }
+    .main-footer{
+        grid-area: main-footer;
+    }
+    .hero{
+        margin-bottom: 3rem;
+        grid-template-columns: repeat(3,1fr);
+        gap: 1.5rem;   
+        grid-template-areas:
+        "hero-img hero-img aside"
+        "header-text main-content aside"
+        "retro laptop gaming"
+        ;
+    }
+    .hero-aside{
+        display: flex;
+        flex-direction: column;
+        
+    }
+    .article-cont{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    .article-cont > *{
+        flex: 1;
+    }
+    .article-cont h3:hover,
+    .article-cont h3:focus-visible{
+        color: var(--Soft-orange);
+
+    }
+    .main-article h3:hover,
+    .main-article h3:focus-visible{
+        cursor: pointer;
+        color: var(--Soft-red);
+
+    }
+    .main-content .btn:hover,
+    .main-content .btn:focus-visible{
+        background-color: var(--Very-dark-blue);
+        color: var(--Off-white);
+    }
+    .primary-navigation{
+        position: relative;
+        top: 0;
+        right: 0;
+        height: fit-content;
+        width: fit-content;
+        
+    }
+    .primary-header[data-overlay]::after{
+        display: none;
+    }
+    .primary-navigation ul{
+        flex-direction: row;
+        gap: 2rem;
+        margin-top: 0;
+    }
+    .primary-navigation ul li{
+        cursor: pointer;
+    }
+    .primary-navigation ul li a:hover{
+        color: var(--Soft-red);
+    }
+    .mobile-nav-toggle{
+        display: none;
+    }
+   .main-article{
+    margin-top: 2.5rem;
+   }
+   
+}
+
+/* destop sites */
+
+/* --------------- */
+/* ---main styles--- */
+/* --------------- */
